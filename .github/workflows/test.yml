@@ -62,6 +62,7 @@ jobs:
           echo tizen | gnome-keyring-daemon --unlock
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin
           tizen certificate -a tizen -p tizen -f tizen
+          cat /home/runner/tizen-studio-data/profile/profiles.xml
           tizen security-profiles add \
             -n tizen \
             -a $HOME/tizen-studio-data/keystore/author/tizen.p12 \
