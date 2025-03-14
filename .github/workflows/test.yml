@@ -59,7 +59,7 @@ jobs:
       - name: Create a Tizen certificate profile
         run: |
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin
-          tizen certificate -p tizen123 -f tizen
+          tizen certificate -a test -p tizen123 -f tizen
           tizen security-profiles add \
             -n tizen \
             -a $HOME/tizen-studio-data/keystore/author/tizen.p12 \
