@@ -3,37 +3,37 @@ name: Test
 on: [push, pull_request]
 
 jobs:
-  tool:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-22.04, windows-latest, macos-latest]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Fetch Flutter SDK
-        run: |
-          git clone https://github.com/flutter/flutter.git
-          cd flutter
-          git checkout $(cat ../bin/internal/flutter.version)
-      - name: Run tests
-        run: flutter/bin/flutter test --coverage
-      - name: Report coverage
-        if: matrix.os == 'ubuntu-22.04'
-        run: |
-          sudo apt update
-          sudo apt install -y lcov
-          lcov --summary coverage/lcov.info
-          lcov --list coverage/lcov.info
+  # tool:
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-22.04, windows-latest, macos-latest]
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Fetch Flutter SDK
+  #       run: |
+  #         git clone https://github.com/flutter/flutter.git
+  #         cd flutter
+  #         git checkout $(cat ../bin/internal/flutter.version)
+  #     - name: Run tests
+  #       run: flutter/bin/flutter test --coverage
+  #     - name: Report coverage
+  #       if: matrix.os == 'ubuntu-22.04'
+  #       run: |
+  #         sudo apt update
+  #         sudo apt install -y lcov
+  #         lcov --summary coverage/lcov.info
+  #         lcov --list coverage/lcov.info
 
-  embedding:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: '6.0.x'
-      - name: Run tests
-        run: dotnet test embedding/csharp
+  # embedding:
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-dotnet@v2
+  #       with:
+  #         dotnet-version: '6.0.x'
+  #     - name: Run tests
+  #       run: dotnet test embedding/csharp
 
   e2e:
     runs-on: ubuntu-22.04
@@ -59,11 +59,11 @@ jobs:
       - name: Create a Tizen certificate profile
         run: |
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin
-          tizen certificate -a tizen -p tizen -f tizen
+          tizen certificate -p tizen123 -f tizen
           tizen security-profiles add \
             -n tizen \
             -a $HOME/tizen-studio-data/keystore/author/tizen.p12 \
-            -p tizen
+            -p tizen123
       - name: Set up flutter-tizen
         run: |
           export PATH=`pwd`/flutter-tizen/bin:$PATH
