@@ -58,14 +58,16 @@ jobs:
             IOT-Headed-6.0-NativeAppDevelopment-CLI
       - name: Create a Tizen certificate profile
         run: |
-          dbus-run-session -- bash 
-          gnome-keyring-daemon --unlock
+          # dbus-run-session -- bash 
+          # gnome-keyring-daemon --unlock
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin
           tizen certificate -a tizen -p tizen -f tizen
           tizen security-profiles add \
             -n tizen \
             -a $HOME/tizen-studio-data/keystore/author/tizen.p12 \
             -p tizen
+          tizen cli-config "default.profiles.path=/$HOME/tizen-sdk-data/ide/keystore/profiles.xml"
+          
       - name: Set up flutter-tizen
         run: |
           export PATH=`pwd`/flutter-tizen/bin:$PATH
