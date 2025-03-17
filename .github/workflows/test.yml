@@ -57,6 +57,8 @@ jobs:
             NativeToolchain-Gcc-9.2 \
             IOT-Headed-6.0-NativeAppDevelopment-CLI \
             TIZEN-8.0-NativeAppDevelopment-CLI
+      - name: Install Tizen Workload
+        run: curl -sSL https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.sh | sudo bash            
       - name: Create a Tizen certificate profile
         run: |
           #dbus-daemon --fork --session --address=unix:abstract=/tmp/dbus-POnsU7G7Dp
