@@ -69,13 +69,13 @@ jobs:
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
           
           #tz cert -n tizen -p tizen123 -f tizen
-          tizen certificate -a tizen -p tizen -f tizen
+          tizen certificate -a test -p tizen -f test
           cat /home/runner/tizen-studio-data/profile/profiles.xml
 
           #tz security-profiles add \
           tizen security-profiles add \
-            -n tizen \
-            -a $HOME/tizen-studio-data/keystore/author/tizen.p12 \
+            -n test \
+            -a $HOME/tizen-studio-data/keystore/author/test.p12 \
             -p tizen
           cat /home/runner/tizen-studio-data/profile/profiles.xml
           
@@ -83,7 +83,7 @@ jobs:
 
           dotnet build -c Debug HelloTNUIApp
           echo "dotnet build finished"
-          tizen package -t tpk -s tizen -- HelloTNUIApp/HelloTNUIApp/bin/Debug/net6.0-tizen8.0/org.tizen.example.HelloTNUIApp-1.0.0.tpk
+          tizen package -t tpk -s test -- HelloTNUIApp/HelloTNUIApp/bin/Debug/net6.0-tizen8.0/org.tizen.example.HelloTNUIApp-1.0.0.tpk
           #tizen build-cs --  HelloTNUIApp -s tizen
           echo "tizen package finished"
           #tz build -w HelloTNUIApp/
