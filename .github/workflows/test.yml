@@ -78,22 +78,25 @@ jobs:
           cat /home/runner/tizen-studio-data/profile/profiles.xml
           
           tz new -t TizenNUIApp -n HelloTNUIApp -T dotnet -p tizen-8.0 -w .
+
+          tizen build-cs --  HelloTNUIApp -s tizen
+          
           tz build -w HelloTNUIApp/
           
-      - name: Set up flutter-tizen
-        run: |
-          export PATH=`pwd`/flutter-tizen/bin:$PATH
-          echo $PATH >> $GITHUB_PATH
-          flutter-tizen doctor -v
-      # - name: Build native TPK
+      # - name: Set up flutter-tizen
       #   run: |
-      #     flutter-tizen create --tizen-language cpp native_app
-      #     cd native_app
+      #     export PATH=`pwd`/flutter-tizen/bin:$PATH
+      #     echo $PATH >> $GITHUB_PATH
+      #     flutter-tizen doctor -v
+      # # - name: Build native TPK
+      # #   run: |
+      # #     flutter-tizen create --tizen-language cpp native_app
+      # #     cd native_app
+      # #     flutter-tizen build tpk -pcommon --debug
+      # - name: Install Tizen Workload
+      #   run: curl -sSL https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.sh | sudo bash
+      # - name: Build .NET TPK
+      #   run: |
+      #     flutter-tizen create --tizen-language csharp dotnet_app
+      #     cd dotnet_app
       #     flutter-tizen build tpk -pcommon --debug
-      - name: Install Tizen Workload
-        run: curl -sSL https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.sh | sudo bash
-      - name: Build .NET TPK
-        run: |
-          flutter-tizen create --tizen-language csharp dotnet_app
-          cd dotnet_app
-          flutter-tizen build tpk -pcommon --debug
