@@ -83,10 +83,13 @@ jobs:
 
           dotnet build -c Debug HelloTNUIApp
           echo "dotnet build finished"
-          tizen package -t tpk -s test -- HelloTNUIApp/HelloTNUIApp/bin/Debug/net6.0-tizen8.0/org.tizen.example.HelloTNUIApp-1.0.0.tpk
-          #tizen build-cs --  HelloTNUIApp -s tizen
-          echo "tizen package finished"
-          #tz build -w HelloTNUIApp/
+          #tizen package -t tpk -s test -- HelloTNUIApp/HelloTNUIApp/bin/Debug/net6.0-tizen8.0/org.tizen.example.HelloTNUIApp-1.0.0.tpk
+          #tizen build-cs -- HelloTNUIApp -s tizen
+          #echo "tizen package finished"
+          tz set -b Debug -s test -w  HelloTNUIApp
+          echo  "tz set finished"
+          tz build -w HelloTNUIApp/
+          echo "tz build finished"
           
       # - name: Set up flutter-tizen
       #   run: |
