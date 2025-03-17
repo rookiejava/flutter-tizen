@@ -63,15 +63,18 @@ jobs:
           export DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-POnsU7G7Dp
           ps -ef | grep "dbus-daemon"
           dbus-run-session -- bash 
-          echo tizen | gnome-keyring-daemon --unlock
-          export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin
-          tizen certificate -a tizen -p tizen -f tizen
+          echo tizen123 | gnome-keyring-daemon --unlock
+          export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
+          
+          tz cert -n tizen -p tizen123 -f tizen
+          #tizen certificate -a tizen -p tizen -f tizen
           cat /home/runner/tizen-studio-data/profile/profiles.xml
+          tz security-profiles add \
           # tizen security-profiles add \
-          #   -n tizen \
-          #   -a $HOME/tizen-studio-data/keystore/author/tizen.p12 \
-          #   -p tizen
-          # cat /home/runner/tizen-studio-data/profile/profiles.xml
+            -n tizen \
+            -a $HOME/tizen-studio-data/keystore/author/tizen.p12 \
+            -p tizen123
+          cat /home/runner/tizen-studio-data/profile/profiles.xml
       - name: Set up flutter-tizen
         run: |
           export PATH=`pwd`/flutter-tizen/bin:$PATH
