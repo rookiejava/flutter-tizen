@@ -71,7 +71,7 @@ jobs:
           cat /home/runner/tizen-studio-data/profile/profiles.xml
 
           #tz security-profiles add \
-          tizen security-profiles add \          
+          tizen security-profiles add \
             -n tizen \
             -a $HOME/tizen-studio-data/keystore/author/tizen.p12 \
             -p tizen
