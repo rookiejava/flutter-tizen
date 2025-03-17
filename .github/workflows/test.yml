@@ -69,8 +69,8 @@ jobs:
           tz cert -n tizen -p tizen123 -f tizen
           #tizen certificate -a tizen -p tizen -f tizen
           #cat /home/runner/tizen-studio-data/profile/profiles.xml
-          tz security-profiles add \
           # tizen security-profiles add \
+          tz security-profiles add \
             -n tizen \
             -a $HOME/tizen-studio-data/keystore/author/tizen.p12 \
             -p tizen123
