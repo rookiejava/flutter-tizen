@@ -76,7 +76,7 @@ jobs:
           tizen security-profiles add -n tizen -a $HOME/tizen-studio-data/keystore/author/tizen.p12 -p tizen
           cat $HOME/tizen-studio-data/profile/profiles.xml
 
-          sed-i 's/***/password=""/g' $HOME/tizen-studio-data/profile/profiles.xml
+          sed -i 's/***/password=""/g' $HOME/tizen-studio-data/profile/profiles.xml
           echo "after sed!"
           cat $HOME/tizen-studio-data/profile/profiles.xml
           
