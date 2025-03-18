@@ -46,7 +46,7 @@ jobs:
           sudo add-apt-repository ppa:deadsnakes/ppa
           sudo apt update
           sudo apt install -y libncurses5 python2.7 libpython2.7 gettext \
-            libkf5itemmodels5 libkf5kiowidgets5 libkchart2 dbus-x11 gnome-keyring
+            libkf5itemmodels5 libkf5kiowidgets5 libkchart2 libsecret dbus-x11 gnome-keyring
           curl https://download.tizen.org/sdk/Installer/tizen-studio_6.0/web-cli_Tizen_Studio_6.0_ubuntu-64.bin -o install.bin
           chmod a+x install.bin
           ./install.bin --accept-license $HOME/tizen-studio
@@ -64,24 +64,32 @@ jobs:
           #dbus-daemon --fork --session --address=unix:abstract=/tmp/dbus-POnsU7G7Dp
           #export DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-POnsU7G7Dp
           #ps -ef | grep "dbus-daemon"
-          dbus-run-session -- bash 
-          echo 12345678 | gnome-keyring-daemon --unlock
-          gnome-keyring-daemon --start
+          #dbus-run-session -- bash 
+          #echo 12345678 | gnome-keyring-daemon --unlock
+          #gnome-keyring-daemon --start
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
+
+          eval "$(dbus-launch --sh-syntax)"
+          mkdir -p ~/.cache
+          mkdir -p ~/.local/share/keyrings # where the automatic keyring is created
+          # 1. Create the keyring manually with a dummy password in stdin
+          eval "$(printf '\n' | gnome-keyring-daemon --unlock)"
+          # 2. Start the daemon, using the password to unlock the just-created keyring:
+          eval "$(printf '\n' | /usr/bin/gnome-keyring-daemon --start)"
           
           #tz cert -n tizen -p tizen123 -f tizen
           tizen certificate -a tizen -p tizen -f tizen
-          tizen certificate -a test -p 12345678 -f test
+          #tizen certificate -a test -p 12345678 -f test
           cat $HOME/tizen-studio-data/profile/profiles.xml
 
           #tz security-profiles add 
           tizen security-profiles add -n tizen -a $HOME/tizen-studio-data/keystore/author/tizen.p12 -p tizen
-          tizen security-profiles add -n test -a $HOME/tizen-studio-data/keystore/author/test.p12 -p 12345678
+          #tizen security-profiles add -n test -a $HOME/tizen-studio-data/keystore/author/test.p12 -p 12345678
           cat $HOME/tizen-studio-data/profile/profiles.xml
 
-          sed -i '/\*\*\*/s/\*\*\*/password=""/' $HOME/tizen-studio-data/profile/profiles.xml
-          echo "after sed!"
-          cat $HOME/tizen-studio-data/profile/profiles.xml
+          #sed -i '/\*\*\*/s/\*\*\*/password=""/' $HOME/tizen-studio-data/profile/profiles.xml
+          #echo "after sed!"
+          #cat $HOME/tizen-studio-data/profile/profiles.xml
           
           tz new -t TizenNUIApp -n HelloTNUIApp -T dotnet -p tizen-8.0 -w .
 
@@ -90,7 +98,7 @@ jobs:
           #tizen package -t tpk -s tizen -- HelloTNUIApp/HelloTNUIApp/bin/Debug/net6.0-tizen8.0/org.tizen.example.HelloTNUIApp-1.0.0.tpk
           #tizen build-cs -- HelloTNUIApp -s tizen
           #echo "tizen package finished"
-          tz set -b Debug -s test -w  HelloTNUIApp
+          tz set -b Debug -s tizen -w  HelloTNUIApp
           echo  "tz set finished"
           tz build -w HelloTNUIApp/
           echo "tz build finished"
