@@ -76,7 +76,7 @@ jobs:
           #eval "$(printf '\n' | gnome-keyring-daemon --unlock)"
           # 2. Start the daemon, using the password to unlock the just-created keyring:
           #eval "$(printf '\n' | /usr/bin/gnome-keyring-daemon --start)"
-          eval "$(dbus-run-session -- bash)"
+          eval "$(dbus-launch --sh-syntax)"
           eval "$(printf '\n' | gnome-keyring-daemon --unlock)"
           eval "$(printf '\n' | gnome-keyring-daemon --start)"          
           
@@ -122,7 +122,7 @@ jobs:
         run: |
           #cat $HOME/tizen-studio-data/profile/profiles.xml
           #export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
-          eval "$(dbus-run-session -- bash)"
+          eval "$(dbus-launch --sh-syntax)"
           eval "$(printf '\n' | gnome-keyring-daemon --unlock)"
           eval "$(printf '\n' | gnome-keyring-daemon --start)"          
           #tizen certificate -a tizen -p tizen -f tizen
