@@ -69,7 +69,7 @@ jobs:
           #gnome-keyring-daemon --start
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
 
-          #eval "$(dbus-launch --sh-syntax)"
+          eval "$(dbus-launch --sh-syntax)"
           #mkdir -p ~/.cache
           #mkdir -p ~/.local/share/keyrings # where the automatic keyring is created
           # 1. Create the keyring manually with a dummy password in stdin
