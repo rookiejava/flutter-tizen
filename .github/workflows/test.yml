@@ -64,8 +64,8 @@ jobs:
           #dbus-daemon --fork --session --address=unix:abstract=/tmp/dbus-POnsU7G7Dp
           #export DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-POnsU7G7Dp
           #ps -ef | grep "dbus-daemon"
-          #dbus-run-session -- bash 
-          #echo 12345678 | gnome-keyring-daemon --unlock
+          dbus-run-session -- bash 
+          echo tizen | gnome-keyring-daemon --unlock
           #gnome-keyring-daemon --start
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
 
