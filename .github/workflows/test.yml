@@ -94,32 +94,32 @@ jobs:
           #echo "after sed!"
           #cat $HOME/tizen-studio-data/profile/profiles.xml
           
-          tz new -t TizenNUIApp -n HelloTNUIApp -T dotnet -p tizen-8.0 -w .
+          #tz new -t TizenNUIApp -n HelloTNUIApp -T dotnet -p tizen-8.0 -w .
 
           #dotnet build -c Debug HelloTNUIApp
           #echo "dotnet build finished"
           #tizen package -t tpk -s tizen -- HelloTNUIApp/HelloTNUIApp/bin/Debug/net6.0-tizen8.0/org.tizen.example.HelloTNUIApp-1.0.0.tpk
           #tizen build-cs -- HelloTNUIApp -s tizen
           #echo "tizen package finished"
-          tz set -b Debug -s tizen -w  HelloTNUIApp
-          echo  "tz set finished"
-          tz build -w HelloTNUIApp/
-          echo "tz build finished"
+          #tz set -b Debug -s tizen -w  HelloTNUIApp
+          #echo  "tz set finished"
+          #tz build -w HelloTNUIApp/
+          #echo "tz build finished"
           
-      # - name: Set up flutter-tizen
+      - name: Set up flutter-tizen
+        run: |
+          export PATH=`pwd`/flutter-tizen/bin:$PATH
+          echo $PATH >> $GITHUB_PATH
+          flutter-tizen doctor -v
+      # - name: Build native TPK
       #   run: |
-      #     export PATH=`pwd`/flutter-tizen/bin:$PATH
-      #     echo $PATH >> $GITHUB_PATH
-      #     flutter-tizen doctor -v
-      # # - name: Build native TPK
-      # #   run: |
-      # #     flutter-tizen create --tizen-language cpp native_app
-      # #     cd native_app
-      # #     flutter-tizen build tpk -pcommon --debug
+      #     flutter-tizen create --tizen-language cpp native_app
+      #     cd native_app
+      #     flutter-tizen build tpk -pcommon --debug
       # - name: Install Tizen Workload
       #   run: curl -sSL https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.sh | sudo bash
-      # - name: Build .NET TPK
-      #   run: |
-      #     flutter-tizen create --tizen-language csharp dotnet_app
-      #     cd dotnet_app
-      #     flutter-tizen build tpk -pcommon --debug
+      - name: Build .NET TPK
+        run: |
+          flutter-tizen create --tizen-language csharp dotnet_app
+          cd dotnet_app
+          flutter-tizen build tpk -pcommon --debug
