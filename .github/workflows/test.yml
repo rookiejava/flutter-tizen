@@ -75,6 +75,7 @@ jobs:
 
           #tz security-profiles add 
           tizen security-profiles add -n tizen -a $HOME/tizen-studio-data/keystore/author/tizen.p12 -p tizen
+          tizen security-profiles add -n test -a $HOME/tizen-studio-data/keystore/author/test.p12 -p 12345678
           cat $HOME/tizen-studio-data/profile/profiles.xml
 
           sed -i '/\*\*\*/s/\*\*\*/password=""/' $HOME/tizen-studio-data/profile/profiles.xml
@@ -88,7 +89,7 @@ jobs:
           #tizen package -t tpk -s tizen -- HelloTNUIApp/HelloTNUIApp/bin/Debug/net6.0-tizen8.0/org.tizen.example.HelloTNUIApp-1.0.0.tpk
           #tizen build-cs -- HelloTNUIApp -s tizen
           #echo "tizen package finished"
-          tz set -b Debug -s tizen -w  HelloTNUIApp
+          tz set -b Debug -s test -w  HelloTNUIApp
           echo  "tz set finished"
           tz build -w HelloTNUIApp/
           echo "tz build finished"
