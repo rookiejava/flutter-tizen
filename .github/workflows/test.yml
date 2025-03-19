@@ -53,7 +53,7 @@ jobs:
           rm install.bin
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
           tizen version
-          tz --version
+          #tz --version
           cat $HOME/tizen-studio/sdk.version
       - name: Install Tizen Studio packages
         run: |
