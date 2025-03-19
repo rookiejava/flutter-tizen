@@ -59,12 +59,12 @@ jobs:
         run: |
           $HOME/tizen-studio/package-manager/package-manager-cli.bin install \
             NativeToolchain-Gcc-9.2 \
-            IOT-Headed-6.0-NativeAppDevelopment-CLI
+            IOT-Headed-6.0-NativeAppDevelopment
             #TIZEN-8.0-NativeAppDevelopment-CLI
-          export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
-          tizen version
-          tz --version
-          cat $HOME/tizen-studio/sdk.version
+          #export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
+          #tizen version
+          #tz --version
+          #cat $HOME/tizen-studio/sdk.version
       - name: Install Tizen Workload
         run: curl -sSL https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.sh | sudo bash            
       - name: Create a Tizen certificate profile
