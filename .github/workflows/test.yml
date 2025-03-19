@@ -55,7 +55,7 @@ jobs:
         run: |
           $HOME/tizen-studio/package-manager/package-manager-cli.bin install \
             NativeToolchain-Gcc-9.2 \
-            IOT-Headed-6.0-NativeAppDevelopment-CLI
+            IOT-Headed-6.0-NativeAppDevelopment
       - name: Create a Tizen certificate profile
         run: |
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin
