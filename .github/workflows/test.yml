@@ -135,6 +135,7 @@ jobs:
           #tz build -w HelloTNUIApp/
           #echo "tz build finished"
 
+          cat $HOME/tizen-studio/sdk.version
           tizen version
           tz --version
           
