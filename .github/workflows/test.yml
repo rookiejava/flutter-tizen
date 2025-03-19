@@ -54,7 +54,7 @@ jobs:
           export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
           tizen version
           #tz --version
-          cat $HOME/tizen-studio/sdk.version
+          #cat $HOME/tizen-studio/sdk.version
       - name: Install Tizen Studio packages
         run: |
           $HOME/tizen-studio/package-manager/package-manager-cli.bin install \
