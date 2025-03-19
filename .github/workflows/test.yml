@@ -47,7 +47,7 @@ jobs:
           sudo apt update
           sudo apt install -y libncurses5 python2.7 libpython2.7 gettext \
             libkf5itemmodels5 libkf5kiowidgets5 libkchart2 dbus-x11 gnome-keyring
-          curl https://download.tizen.org/sdk/Installer/tizen-studio_5.5/web-cli_Tizen_Studio_5.5_ubuntu-64.bin -o install.bin
+          curl https://download.tizen.org/sdk/Installer/tizen-studio_5.0/web-cli_Tizen_Studio_5.0_ubuntu-64.bin -o install.bin
           chmod a+x install.bin
           ./install.bin --accept-license $HOME/tizen-studio
           rm install.bin
@@ -122,7 +122,7 @@ jobs:
       - name: Build .NET TPK
         run: |
           #cat $HOME/tizen-studio-data/profile/profiles.xml
-          #export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
+          export PATH=$PATH:$HOME/tizen-studio/tools/ide/bin:$HOME/tizen-studio/tools/tizen-core
           #eval "$(dbus-launch --sh-syntax)"
           #eval "$(printf '\n' | gnome-keyring-daemon --unlock)"
           #eval "$(printf '\n' | gnome-keyring-daemon --start)"          
@@ -135,6 +135,9 @@ jobs:
           #tz build -w HelloTNUIApp/
           #echo "tz build finished"
 
+          tizen version
+          tz --version
+          
           flutter-tizen create --tizen-language csharp dotnet_app
           cd dotnet_app
           
